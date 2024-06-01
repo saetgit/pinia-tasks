@@ -6,7 +6,7 @@
 
   <main>
     <header>
-      <img alt="Pinia logo" src="./assets/Pinialogo.svg.png" />
+      <img alt="Pinia logo" src="./assets/Pinialogo.png" />
       <h1>Pinia Tasks</h1>
     </header>
   </main>
