@@ -4,6 +4,9 @@
       <img alt="Pinia logo" src="./assets/Pinialogo.png" />
       <h1>Pinia Task</h1>
     </header>
+    <div class="new-task-form">
+      <TaskForm />
+    </div>
     <nav class="filter">
       <button @click="filter = 'all'">All Tasks</button>
       <button @click="filter = 'favs'">Fav tasks</button>
@@ -17,7 +20,7 @@
 
     <div class="task-list" v-if="filter === 'favs'">
       <p>You have {{ taskStore.favCount }} tasks in your favs list.</p>
-      <div v-for=" task in taskStore.favs" :key="task.id">
+      <div v-for=" task in taskStore.fav" :key="task.id">
         <TaskDetail :task="task" />
       </div>
     </div>
@@ -28,6 +31,7 @@
 import { ref } from 'vue'
 import { useTaskStore } from './stores/TaskStore';
 import TaskDetail from './components/TaskDetails.vue';
+import TaskForm from './components/TaskForm.vue';
 
 const taskStore = useTaskStore();
 const filter = ref('all')
