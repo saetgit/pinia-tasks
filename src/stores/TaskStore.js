@@ -50,26 +50,21 @@ export const useTaskStore = defineStore('taskStore', {
             }
         },
         async toggleFav(id) {
-            const task = this.tasks.find(t => t.id === id);
-            task.isFav = !task.isFav;
-          
-            try {
-              const res = await fetch('http://localhost:3000/tasks/' + id, {
-                method: 'PATCH',
-                body: JSON.stringify({ isFav: task.isFav }),
+            const task = this.tasks.find(t => (t.id === id))
+            
+            
+            task.isFav = !task.isFav
+
+            const res = await fetch('http://localhost:3000/tasks/' + id, {
+                method: 'PUT',
+                body: JSON.stringify({ ...task, isFav: task.isFav }),
                 headers: { 'Content-Type': 'application/json' }
-              });
-          
-              if (!res.ok) {
-                const errorData = await res.json();
-                console.log('Error:', errorData);
-              } else {
-                console.log('Task updated successfully');
-              }
-            } catch (error) {
-              console.error('Fetch error:', error);
+            })
+
+            if (res.error) {
+                console.log(res.error)
             }
-          }
+        }
     }
 })
 
